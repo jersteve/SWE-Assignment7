@@ -308,6 +308,16 @@ export default class Form extends React.Component {
 
     // reset backs to empty states
     this.setState(this.initialState);
+
+    //reset coloring
+    document.getElementById("selectGym").style.color = "";
+    document.getElementById("rateCleanRow").style.backgroundColor = "";
+    document.getElementById("rateQualRow").style.backgroundColor = "";
+    document.getElementById("rateDownRow").style.backgroundColor = "";
+    document.getElementById("rateAmenRow").style.backgroundColor = "";
+    document.getElementById("rateOverallRow").style.backgroundColor = "";
+
+    event.preventDefault();
   }
 
 
