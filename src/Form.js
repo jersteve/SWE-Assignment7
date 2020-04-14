@@ -30,7 +30,7 @@ export default class Form extends React.Component {
 
     this.clearFields = this.clearFields.bind(this);
 
-    this.doPost = this.doPost.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   //to reset states (when Clear Button clicked)
@@ -98,7 +98,7 @@ export default class Form extends React.Component {
   }
 
   //Prevent submissions that don't fill in all required fields; otherwise successfully submit & echo fields
-  doPost(event) {
+  handleSubmit(event) {
     var gymChecked = true;
     var cleanlinessChecked = true;
     var qualityChecked = true;
@@ -255,37 +255,6 @@ export default class Form extends React.Component {
       }
 
       alert(msg);
-    } else {
-      // display form of user-inputted fields, if there are no missing fields (valid submission)
-
-      var newLine = "\r\n";
-      var msg = "𝗙𝗼𝗿𝗺 𝗛𝗮𝗻𝗱𝗹𝗲𝗿 - 𝗦𝘂𝗰𝗰𝗲𝘀𝘀𝗳𝘂𝗹 𝗦𝘂𝗯𝗺𝗶𝘀𝘀𝗶𝗼𝗻!";
-      msg += newLine;
-      msg += "-----------------------------------------------------------";
-      msg += newLine;
-
-      msg += "Selected Gym --> " + this.state.gym;
-      msg += newLine;
-
-      msg += "Cleanliness --> " + this.state.cleanliness;
-      msg += newLine;
-
-      msg += "Quality Of Service --> " + this.state.qualService;
-      msg += newLine;
-
-      msg += "Equipment Downtime --> " + this.state.equipDowntime;
-      msg += newLine;
-
-      msg += "Amenities --> " + this.state.amenities;
-      msg += newLine;
-
-      msg += "Overall --> " + this.state.overall;
-      msg += newLine;
-
-      msg += "Additional Comments --> " + this.state.text;
-      msg += newLine;
-
-      alert(msg);
     }
   }
 
@@ -345,7 +314,11 @@ export default class Form extends React.Component {
 
   render() {
     return (
-      <form>
+      <form
+        method="post"
+        id="userform"
+        action="http://432a6-env.eba-3kzwdscd.us-east-1.elasticbeanstalk.com/MyServlet"
+      >
         <p id="selectGym">
           <u>Select a Gym:</u>
         </p>
@@ -361,6 +334,7 @@ export default class Form extends React.Component {
                 <input
                   id="skylineRadio"
                   type="radio"
+                  name="Gym Selected"
                   defaultValue="Skyline"
                   data-col={1}
                   checked={this.state.gym === "Skyline"}
@@ -376,6 +350,7 @@ export default class Form extends React.Component {
                 <input
                   id="racRadio"
                   type="radio"
+                  name="Gym Selected"
                   defaultValue="RAC"
                   data-col={1}
                   checked={this.state.gym === "RAC"}
@@ -391,6 +366,7 @@ export default class Form extends React.Component {
                 <input
                   id="afcRadio"
                   type="radio"
+                  name="Gym Selected"
                   defaultValue="AFC"
                   data-col={1}
                   checked={this.state.gym === "AFC"}
@@ -429,6 +405,7 @@ export default class Form extends React.Component {
                 <input
                   id="clean1"
                   type="radio"
+                  name="Cleanliness"
                   defaultValue="Rating: 1"
                   data-col={1}
                   checked={this.state.cleanliness === "Rating: 1"}
@@ -439,6 +416,7 @@ export default class Form extends React.Component {
                 <input
                   id="clean2"
                   type="radio"
+                  name="Cleanliness"
                   defaultValue="Rating: 2"
                   data-col={2}
                   checked={this.state.cleanliness === "Rating: 2"}
@@ -449,6 +427,7 @@ export default class Form extends React.Component {
                 <input
                   id="clean3"
                   type="radio"
+                  name="Cleanliness"
                   defaultValue="Rating: 3"
                   data-col={3}
                   checked={this.state.cleanliness === "Rating: 3"}
@@ -459,6 +438,7 @@ export default class Form extends React.Component {
                 <input
                   id="clean4"
                   type="radio"
+                  name="Cleanliness"
                   defaultValue="Rating: 4"
                   data-col={4}
                   checked={this.state.cleanliness === "Rating: 4"}
@@ -469,6 +449,7 @@ export default class Form extends React.Component {
                 <input
                   id="clean5"
                   type="radio"
+                  name="Cleanliness"
                   defaultValue="Rating: 5"
                   data-col={5}
                   checked={this.state.cleanliness === "Rating: 5"}
@@ -479,6 +460,7 @@ export default class Form extends React.Component {
                 <input
                   id="clean6"
                   type="radio"
+                  name="Cleanliness"
                   defaultValue="Rating: N/A"
                   data-col={6}
                   checked={this.state.cleanliness === "Rating: N/A"}
@@ -494,6 +476,7 @@ export default class Form extends React.Component {
                 <input
                   id="qual1"
                   type="radio"
+                  name="Quality of Service"
                   defaultValue="Rating: 1"
                   data-col={1}
                   checked={this.state.qualService === "Rating: 1"}
@@ -504,6 +487,7 @@ export default class Form extends React.Component {
                 <input
                   id="qual2"
                   type="radio"
+                  name="Quality of Service"
                   defaultValue="Rating: 2"
                   data-col={2}
                   checked={this.state.qualService === "Rating: 2"}
@@ -514,6 +498,7 @@ export default class Form extends React.Component {
                 <input
                   id="qual3"
                   type="radio"
+                  name="Quality of Service"
                   defaultValue="Rating: 3"
                   data-col={3}
                   checked={this.state.qualService === "Rating: 3"}
@@ -524,6 +509,7 @@ export default class Form extends React.Component {
                 <input
                   id="qual4"
                   type="radio"
+                  name="Quality of Service"
                   defaultValue="Rating: 4"
                   data-col={4}
                   checked={this.state.qualService === "Rating: 4"}
@@ -534,6 +520,7 @@ export default class Form extends React.Component {
                 <input
                   id="qual5"
                   type="radio"
+                  name="Quality of Service"
                   defaultValue="Rating: 5"
                   data-col={5}
                   checked={this.state.qualService === "Rating: 5"}
@@ -544,6 +531,7 @@ export default class Form extends React.Component {
                 <input
                   id="qual6"
                   type="radio"
+                  name="Quality of Service"
                   defaultValue="Rating: N/A"
                   data-col={6}
                   checked={this.state.qualService === "Rating: N/A"}
@@ -559,6 +547,7 @@ export default class Form extends React.Component {
                 <input
                   id="down1"
                   type="radio"
+                  name="Equipment Downtime"
                   defaultValue="Rating: 1"
                   data-col={1}
                   checked={this.state.equipDowntime === "Rating: 1"}
@@ -569,6 +558,7 @@ export default class Form extends React.Component {
                 <input
                   id="down2"
                   type="radio"
+                  name="Equipment Downtime"
                   defaultValue="Rating: 2"
                   data-col={2}
                   checked={this.state.equipDowntime === "Rating: 2"}
@@ -579,6 +569,7 @@ export default class Form extends React.Component {
                 <input
                   id="down3"
                   type="radio"
+                  name="Equipment Downtime"
                   defaultValue="Rating: 3"
                   data-col={3}
                   checked={this.state.equipDowntime === "Rating: 3"}
@@ -589,6 +580,7 @@ export default class Form extends React.Component {
                 <input
                   id="down4"
                   type="radio"
+                  name="Equipment Downtime"
                   defaultValue="Rating: 4"
                   data-col={4}
                   checked={this.state.equipDowntime === "Rating: 4"}
@@ -599,6 +591,7 @@ export default class Form extends React.Component {
                 <input
                   id="down5"
                   type="radio"
+                  name="Equipment Downtime"
                   defaultValue="Rating: 5"
                   data-col={5}
                   checked={this.state.equipDowntime === "Rating: 5"}
@@ -609,6 +602,7 @@ export default class Form extends React.Component {
                 <input
                   id="down6"
                   type="radio"
+                  name="Equipment Downtime"
                   defaultValue="Rating: N/A"
                   data-col={6}
                   checked={this.state.equipDowntime === "Rating: N/A"}
@@ -624,6 +618,7 @@ export default class Form extends React.Component {
                 <input
                   id="amen1"
                   type="radio"
+                  name="Amenities"
                   defaultValue="Rating: 1"
                   data-col={1}
                   checked={this.state.amenities === "Rating: 1"}
@@ -634,6 +629,7 @@ export default class Form extends React.Component {
                 <input
                   id="amen2"
                   type="radio"
+                  name="Amenities"
                   defaultValue="Rating: 2"
                   data-col={2}
                   checked={this.state.amenities === "Rating: 2"}
@@ -644,6 +640,7 @@ export default class Form extends React.Component {
                 <input
                   id="amen3"
                   type="radio"
+                  name="Amenities"
                   defaultValue="Rating: 3"
                   data-col={3}
                   checked={this.state.amenities === "Rating: 3"}
@@ -654,6 +651,7 @@ export default class Form extends React.Component {
                 <input
                   id="amen4"
                   type="radio"
+                  name="Amenities"
                   defaultValue="Rating: 4"
                   data-col={4}
                   checked={this.state.amenities === "Rating: 4"}
@@ -664,6 +662,7 @@ export default class Form extends React.Component {
                 <input
                   id="amen5"
                   type="radio"
+                  name="Amenities"
                   defaultValue="Rating: 5"
                   data-col={5}
                   checked={this.state.amenities === "Rating: 5"}
@@ -674,6 +673,7 @@ export default class Form extends React.Component {
                 <input
                   id="amen6"
                   type="radio"
+                  name="Amenities"
                   defaultValue="Rating: N/A"
                   data-col={6}
                   checked={this.state.amenities === "Rating: N/A"}
@@ -689,6 +689,7 @@ export default class Form extends React.Component {
                 <input
                   id="overall1"
                   type="radio"
+                  name="Overall Rating"
                   defaultValue="Rating: 1"
                   data-col={1}
                   checked={this.state.overall === "Rating: 1"}
@@ -699,6 +700,7 @@ export default class Form extends React.Component {
                 <input
                   id="overall2"
                   type="radio"
+                  name="Overall Rating"
                   defaultValue="Rating: 2"
                   data-col={2}
                   checked={this.state.overall === "Rating: 2"}
@@ -709,6 +711,7 @@ export default class Form extends React.Component {
                 <input
                   id="overall3"
                   type="radio"
+                  name="Overall Rating"
                   defaultValue="Rating: 3"
                   data-col={3}
                   checked={this.state.overall === "Rating: 3"}
@@ -719,6 +722,7 @@ export default class Form extends React.Component {
                 <input
                   id="overall4"
                   type="radio"
+                  name="Overall Rating"
                   defaultValue="Rating: 4"
                   data-col={4}
                   checked={this.state.overall === "Rating: 4"}
@@ -729,6 +733,7 @@ export default class Form extends React.Component {
                 <input
                   id="overall5"
                   type="radio"
+                  name="Overall Rating"
                   defaultValue="Rating: 5"
                   data-col={5}
                   checked={this.state.overall === "Rating: 5"}
@@ -739,6 +744,7 @@ export default class Form extends React.Component {
                 <input
                   id="overall6"
                   type="radio"
+                  name="Overall Rating"
                   defaultValue="Rating: N/A"
                   data-col={6}
                   checked={this.state.overall === "Rating: N/A"}
@@ -753,6 +759,7 @@ export default class Form extends React.Component {
           id="textArea"
           rows={10}
           cols={70}
+          name="Additional Comments"
           placeholder="Write any additional comments here (optional)..."
           maxLength={640}
           defaultValue={""}
@@ -764,7 +771,11 @@ export default class Form extends React.Component {
           Clear All
         </button>
 
-        <button id="submitButton" onClick={this.doPost} className="button">
+        <button
+          id="submitButton"
+          onClick={this.handleSubmit}
+          className="button"
+        >
           <span>Submit All</span>
         </button>
       </form>
